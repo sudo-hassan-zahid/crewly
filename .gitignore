@@ -10,16 +10,11 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded assets and storage
+# Uploaded assets and storage
 /storage/*
 !/storage/.keep
 /public/assets
 
-# Ignore environment & secret files
-/.env
-/.env.*
-/config/master.key
-/config/credentials/*.key
 
 # IDE and OS metadata
 .DS_Store
