@@ -16,7 +16,7 @@ module Payroll
       pdf = Prawn::Document.new(page_size: "A4", margin: [40, 40, 40, 40])
       
       # Header
-      pdf.text "HRMS ENTERPRISE - PAYSLIP", size: 20, style: :bold, align: :center
+      pdf.text "CREWLY - PAYSLIP", size: 20, style: :bold, align: :center
       pdf.text "Pay Period: #{@payslip.period_name}", size: 12, align: :center
       pdf.move_down 20
 

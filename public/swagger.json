@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Human Resource Management System (HRMS) API",
-    "description": "Production-grade Ruby on Rails REST API for core HR, attendance, leaves, and payroll management.",
+    "title": "Crewly HRMS API",
+    "description": "Production-grade Ruby on Rails REST API for core HR, attendance, leaves, payroll, activity tracking, and multi-tenant SaaS management.",
     "version": "1.0.0"
   },
   "servers": [
