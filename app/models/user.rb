@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :performance_reviews, dependent: :destroy
   has_many :conducted_reviews, class_name: "PerformanceReview", foreign_key: "reviewer_id", dependent: :nullify
   has_many :employee_documents, dependent: :destroy
+  has_many :activity_logs, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
   validates :employee_number, presence: true, uniqueness: true
