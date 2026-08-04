@@ -1,4 +1,4 @@
-# 🏢 Workbase - Enterprise Human Resource Management System (HRMS)
+# 🏢 Crewly - Human Resource Management System (HRMS)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
@@ -73,5 +73,4 @@ bundle exec rspec
 ## 📜 Documentation & Tracking
 
 - 📄 **[AGENTS.md](file:///j:/hrms-ror/AGENTS.md)**: Master feature matrix, completion status checklist, and multi-tenant SaaS roadmap.
-- 📄 **[FEATURES.md](file:///j:/hrms-ror/FEATURES.md)**: Detailed feature domain specifications.
 - 📄 **[OpenAPI Spec](file:///j:/hrms-ror/public/swagger.json)**: Full OpenAPI 3.0 JSON schema.
