@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :departments
+      resources :activity_logs, only: [:index] do
+        collection do
+          post :ingest
+        end
+      end
       resources :attendance_records, only: [:index] do
         collection do
           post :clock_in
