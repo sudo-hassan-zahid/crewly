@@ -13,6 +13,7 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Employment Status Tracking (`active`, `on_leave`, `terminated`)
 - [x] Reporting Hierarchy (`manager_id` self-referential association for Org Chart)
 - [x] Bank Account & Financial Details Schema
+- [x] Employee Document Vault & Metadata Schema (`EmployeeDocument` model with document_type enum)
 - [ ] Multi-company / Subsidiary organizational hierarchy support
 - [ ] Employee Document Upload & Storage (Passport, ID, Certificates via ActiveStorage / AWS S3)
 
