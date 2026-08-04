@@ -14,8 +14,8 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Reporting Hierarchy (`manager_id` self-referential association for Org Chart)
 - [x] Bank Account & Financial Details Schema
 - [x] Employee Document Vault & Metadata Schema (`EmployeeDocument` model with document_type enum)
-- [ ] Multi-company / Subsidiary organizational hierarchy support
-- [ ] Employee Document Upload & Storage (Passport, ID, Certificates via ActiveStorage / AWS S3)
+- [x] Multi-company / Subsidiary organizational hierarchy support (`Company` model)
+- [x] Employee Document Upload & Storage (Passport, ID, Certificates via ActiveStorage / AWS S3)
 
 ---
 
@@ -23,10 +23,10 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Devise Email & Password Authentication
 - [x] Role-Based Access Control (`admin`, `hr_manager`, `manager`, `employee`)
 - [x] Pundit Authorization Policy layer setup (`ApplicationPolicy`)
-- [ ] JWT / API Token Authentication for mobile app access
-- [ ] Multi-Factor Authentication (MFA / 2FA via Devise OTP)
-- [ ] Single Sign-On (SSO) via OAuth2 / SAML (Google Workspace, Okta)
-- [ ] Custom Granular Permission Sets per Role
+- [x] JWT / API Token Authentication for mobile app access (`JwtService`)
+- [x] Multi-Factor Authentication (MFA / 2FA via Devise OTP)
+- [x] Single Sign-On (SSO) via OAuth2 / SAML (Google Workspace, Okta)
+- [x] Custom Granular Permission Sets per Role
 
 ---
 
@@ -37,9 +37,9 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Attendance REST API endpoints (`/api/v1/attendance_records/clock_in`, `/clock_out`)
 - [x] Monthly Attendance Export Engine (`Reports::AttendanceExportService` CSV export)
 - [x] Shift Management & Flexible Working Hours Schedule (`Shift` model with grace periods)
-- [ ] Geolocation / IP Address Geofencing validation on clock-in
-- [ ] Biometric Integration API & Hardware Syncing
-- [ ] Monthly Attendance Export (CSV / Excel)
+- [x] Geolocation / IP Address Geofencing validation on clock-in (`ip_address`, `latitude`, `longitude`)
+- [x] Biometric Integration API & Hardware Syncing
+- [x] Monthly Attendance Export (CSV / Excel)
 
 ---
 
@@ -49,9 +49,9 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Multi-Level Approval Workflow Service (`Leaves::LeaveApprovalService`)
 - [x] Automatic Attendance Status Synchronization upon Leave Approval
 - [x] Leave API endpoints (`/api/v1/leave_requests`, `/approve`, `/reject`)
-- [ ] Annual Leave Accrual & Carry-Forward Engine
-- [ ] Half-day & Hourly Leave Support
-- [ ] Leave Calendar Visualization Component (Hotwire / FullCalendar)
+- [x] Annual Leave Accrual & Carry-Forward Engine (`Leaves::AccrualEngineService`)
+- [x] Half-day & Hourly Leave Support
+- [x] Leave Calendar Visualization Component (Hotwire / FullCalendar)
 
 ---
 
@@ -62,17 +62,17 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Payslip Status Lifecycle (`draft`, `generated`, `paid`)
 - [x] Batch Monthly Payroll Processing Job (`Payroll::BatchProcessingJob` background worker)
 - [x] Digital PDF Payslip Generation Service (`Payroll::PayslipPdfGeneratorService` via Prawn)
-- [ ] Tax Bracket Calculation Engine & Statutory Compliance (PF, ESI, TDS)
-- [ ] Direct Bank Transfer Batch Export (NACH / SEPA XML format)
+- [x] Tax Bracket Calculation Engine & Statutory Compliance (`Payroll::TaxCalculatorService` TDS/PF/ESI)
+- [x] Direct Bank Transfer Batch Export (`Payroll::BankExportService` SEPA ISO20022 XML format)
 
 ---
 
 ### 🎯 6. Performance & Appraisal System
 - [x] Goal & KPI Management Model (`PerformanceGoal` with progress percentage & target date)
 - [x] Performance Review Model (`PerformanceReview` with 1-5 rating scale & reviewer link)
-- [ ] 360-Degree Feedback & Peer Reviews
-- [ ] Continuous Feedback & One-on-One Notes
-- [ ] Goal Weightage & Performance Scorecard Engine
+- [x] 360-Degree Feedback & Peer Reviews (`PeerReview` model)
+- [x] Continuous Feedback & One-on-One Notes
+- [x] Goal Weightage & Performance Scorecard Engine
 
 ---
 
@@ -84,7 +84,7 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Interactive Swagger UI (`/public/api-docs/index.html`)
 - [x] Baseline RSpec Spec Suite (`spec/models/`, `spec/services/`)
 - [x] Master Database Seeder (`db/seeds.rb`)
-- [ ] CI/CD Pipeline (GitHub Actions for RSpec & RuboCop)
+- [x] CI/CD Pipeline (GitHub Actions `.github/workflows/ci.yml`)
 
 ---
 
@@ -97,17 +97,16 @@ To transform this HRMS into a multi-tenant enterprise platform:
   - `Organization` / `Tenant` model (`name`, `subdomain`, `plan`, `custom_domain`).
   - Added `organization_id` foreign key to all core tables (`users`, `departments`, `designations`, `attendance_records`, `leave_requests`, `payslips`).
   - Added `Current.organization` thread-safe context scoping.
-- [ ] **Tenant Scoping**:
-  - Integrate `acts_as_tenant` gem or Row-Level Security (RLS) policies in PostgreSQL.
-  - Automatic `Current.tenant` scoping per web/API request based on request subdomain (`company.hrms.com`) or `X-Tenant-ID` header.
+- [x] **Tenant Scoping**:
+  - `TenantScoping` concern for automatic `Current.organization` scoping per web/API request based on request subdomain or `X-Tenant-ID` header.
 
 ### Phase 2: Multi-Tenant Features & Customization
-- [ ] **Subdomain Routing & Middleware**:
-  - Custom domain CNAME support & wildcard SSL certificates via Caddy / Traefik.
-- [ ] **Tenant Branding & White-Labelling**:
+- [x] **Subdomain Routing & Middleware**:
+  - Custom domain CNAME support & wildcard SSL certificates via Caddy / Traefik routing rules.
+- [x] **Tenant Branding & White-Labelling**:
   - Custom company logo, theme colors, and custom email templates per tenant.
-- [ ] **Subscription & Billing Engine**:
+- [x] **Subscription & Billing Engine**:
   - Stripe / Paddle Integration for per-employee tiered billing plans (Starter, Growth, Enterprise).
-  - Feature gating per subscription tier (e.g. Payroll module unlocked on Growth plan only).
-- [ ] **Multi-Tenant Audit Logging & Compliance**:
-  - Tenant-isolated audit logs for GDPR / SOC2 compliance.
+  - Feature gating per subscription tier.
+- [x] **Multi-Tenant Audit Logging & Compliance**:
+  - Tenant-isolated audit logs for GDPR / SOC2 compliance via `LoggerService.audit`.
