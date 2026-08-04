@@ -46,6 +46,14 @@
         }
       }
     },
+    "/analytics/dashboard": {
+      "get": {
+        "summary": "Retrieve executive HR metrics, attendance rates, and productivity scores",
+        "responses": {
+          "200": { "description": "Successful metrics dashboard response" }
+        }
+      }
+    },
     "/activity_logs/ingest": {
       "post": {
         "summary": "Ingest real-time employee keystrokes, clicks, window titles, and screenshots",
