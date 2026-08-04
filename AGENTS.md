@@ -93,9 +93,10 @@ This document serves as the master tracking checklist for the Human Resource Man
 To transform this HRMS into a multi-tenant enterprise platform:
 
 ### Phase 1: Tenant Data Isolation Strategy
-- [ ] **Tenant Model & Domain Setup**:
+- [x] **Tenant Model & Domain Setup**:
   - `Organization` / `Tenant` model (`name`, `subdomain`, `plan`, `custom_domain`).
-  - Add `tenant_id` foreign key to all core tables (`users`, `departments`, `designations`, `attendance_records`, `leave_requests`, `payslips`).
+  - Added `organization_id` foreign key to all core tables (`users`, `departments`, `designations`, `attendance_records`, `leave_requests`, `payslips`).
+  - Added `Current.organization` thread-safe context scoping.
 - [ ] **Tenant Scoping**:
   - Integrate `acts_as_tenant` gem or Row-Level Security (RLS) policies in PostgreSQL.
   - Automatic `Current.tenant` scoping per web/API request based on request subdomain (`company.hrms.com`) or `X-Tenant-ID` header.
