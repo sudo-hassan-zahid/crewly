@@ -21,6 +21,10 @@ A clean, scalable, production-grade **Human Resource Management System (HRMS)** 
 - **🌴 Leave Management System**: Multi-level leave approvals, auto attendance sync, duration calculators.
 - **💰 Payroll Computation & PDF Payslips**: Monthly salary structure calculation engine, PDF payslip generator via Prawn, batch processing via Sidekiq/ActiveJob.
 - **📄 Employee Document Vault**: Document attachment storage via ActiveStorage.
+- **⚡ Real-Time Activity Tracking & WebSockets**: Live keystroke, mouse click, active window, and screenshot streaming via ActionCable (`ActivityChannel`).
+- **🔔 Real-Time In-App Notifications**: Instant push alerts via ActionCable (`NotificationChannel` & `DispatcherService`).
+- **💳 Multi-Tenant SaaS & Feature Gating**: Multi-tenant data isolation (`Organization` & `Current`), subdomain routing, and plan-tier feature gating via `Subscriptions::GatekeeperService`.
+- **📊 Executive HR Analytics**: Real-time headcount statistics, attendance rates, and 24h productivity score metrics (`/api/v1/analytics/dashboard`).
 - **📡 REST API & Interactive Swagger UI**: Complete API documentation served live at `/api-docs/index.html`.
 - **📊 Multi-Tenant Architecture Roadmap**: Multi-tenant database isolation, subdomain routing, and SaaS billing expansion specs in `AGENTS.md`.
 
