@@ -34,7 +34,7 @@ A clean, scalable, production-grade **Human Resource Management System (HRMS)** 
 
 ### Prerequisites
 - Docker Engine & Docker Compose
-- Ruby 3.2+ and Rails 7+ (for local host execution)
+- Ruby 3.3+ and Rails 7+ (for local host execution)
 
 ### 1. Clone & Environment Setup
 ```bash
