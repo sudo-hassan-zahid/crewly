@@ -99,19 +99,19 @@ This document serves as the master tracking checklist for the Human Resource Man
 ---
 
 ### 🔔 9. Real-Time Notifications & In-App Alert System
-- [ ] In-App Notification Database Schema (`Notification` with read status & action links)
-- [ ] ActionCable Live Notification Streaming Channel (`NotificationChannel`)
-- [ ] Automated Notification Dispatch Service (`Notifications::DispatcherService`)
-- [ ] Real-Time Alert Trigger on Leave Approval, Payslip Generation, & Activity Warnings
+- [x] In-App Notification Database Schema (`Notification` with read status & action links)
+- [x] ActionCable Live Notification Streaming Channel (`NotificationChannel`)
+- [x] Automated Notification Dispatch Service (`Notifications::DispatcherService`)
+- [x] Real-Time Alert Trigger on Leave Approval, Payslip Generation, & Activity Warnings
 
 ---
 
 ### 💳 10. Multi-Tenant SaaS Subscriptions, Feature Gating & HR Analytics
-- [ ] Tenant Branding Customization (Logo URL, Primary/Secondary Theme Colors, Custom Portal Title)
-- [ ] SaaS Subscription Engine Schema (`Subscription` model with Stripe integration placeholders)
-- [ ] Subscription Tier Feature Gating Service (`Subscriptions::GatekeeperService`)
-- [ ] Executive HR Analytics & Headcount Insights Service (`Analytics::DashboardService`)
-- [ ] Analytics REST API Endpoint (`/api/v1/analytics/dashboard`)
+- [x] Tenant Branding Customization (Logo URL, Primary/Secondary Theme Colors, Custom Portal Title)
+- [x] SaaS Subscription Engine Schema (`Subscription` model with Stripe integration placeholders)
+- [x] Subscription Tier Feature Gating Service (`Subscriptions::GatekeeperService`)
+- [x] Executive HR Analytics & Headcount Insights Service (`Analytics::DashboardService`)
+- [x] Analytics REST API Endpoint (`/api/v1/analytics/dashboard`)
 
 ---
 
