@@ -46,6 +46,31 @@
         }
       }
     },
+    "/activity_logs/ingest": {
+      "post": {
+        "summary": "Ingest real-time employee keystrokes, clicks, window titles, and screenshots",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": { "type": "integer" },
+                  "keystrokes_count": { "type": "integer" },
+                  "mouse_clicks_count": { "type": "integer" },
+                  "active_window_title": { "type": "string" },
+                  "screenshot_url": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Telemetry ingested and broadcast in real-time" }
+        }
+      }
+    },
     "/attendance_records/clock_in": {
       "post": {
         "summary": "Clock in an employee",
