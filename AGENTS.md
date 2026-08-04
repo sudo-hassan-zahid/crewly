@@ -88,6 +88,16 @@ This document serves as the master tracking checklist for the Human Resource Man
 
 ---
 
+### ⚡ 8. Real-Time WebSockets & Employee Activity Tracking Engine
+- [ ] ActionCable WebSockets Framework & Redis Channel Adapter (`config/cable.yml`)
+- [ ] Real-Time Activity Streaming Channel (`ActivityChannel`)
+- [ ] Instant Clock-In/Clock-Out WebSocket Alert Channel (`AttendanceChannel`)
+- [ ] Employee Telemetry & Activity Database Schema (`ActivityLog` with keystrokes, clicks, window title, screenshot)
+- [ ] Telemetry Ingestion API Endpoint (`/api/v1/activity_logs/ingest`)
+- [ ] Real-Time Activity Processor & Productivity Index Calculator Service (`Activity::TrackerService`)
+
+---
+
 ## 🏢 Multi-Tenant Architecture Roadmap (SaaS Extension)
 
 To transform this HRMS into a multi-tenant enterprise platform:
