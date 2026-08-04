@@ -1,6 +1,6 @@
-# HRMS Feature Matrix & Multi-Tenant Roadmap
+# Crewly - Feature Matrix & Multi-Tenant Roadmap
 
-This document serves as the master tracking checklist for the Human Resource Management System (HRMS) built with Ruby on Rails & PostgreSQL.
+This document serves as the master tracking checklist for **Crewly**, a Human Resource Management System (HRMS) built with Ruby on Rails & PostgreSQL.
 
 ---
 
