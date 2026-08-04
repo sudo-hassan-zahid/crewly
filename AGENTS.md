@@ -35,6 +35,7 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Automatic Work Hours Calculation (`total_hours` computation)
 - [x] Attendance Status Tagging (`present`, `late`, `half_day`, `absent`, `on_leave`)
 - [x] Attendance REST API endpoints (`/api/v1/attendance_records/clock_in`, `/clock_out`)
+- [x] Monthly Attendance Export Engine (`Reports::AttendanceExportService` CSV export)
 - [ ] Geolocation / IP Address Geofencing validation on clock-in
 - [ ] Shift Management & Flexible Working Hours Schedule
 - [ ] Biometric Integration API & Hardware Syncing
