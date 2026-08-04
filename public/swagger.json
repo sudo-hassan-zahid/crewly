@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Human Resource Management System (HRMS) API",
+    "description": "Production-grade Ruby on Rails REST API for core HR, attendance, leaves, and payroll management.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/departments": {
+      "get": {
+        "summary": "List all departments",
+        "responses": {
+          "200": { "description": "Successful response" }
+        }
+      },
+      "post": {
+        "summary": "Create a department",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "department": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "code": { "type": "string" },
+                      "description": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Department created" }
+        }
+      }
+    },
+    "/attendance_records/clock_in": {
+      "post": {
+        "summary": "Clock in an employee",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": { "type": "integer" },
+                  "notes": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Clocked in successfully" }
+        }
+      }
+    },
+    "/attendance_records/clock_out": {
+      "post": {
+        "summary": "Clock out an employee",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Clocked out successfully" }
+        }
+      }
+    },
+    "/leave_requests": {
+      "get": {
+        "summary": "List leave requests",
+        "responses": {
+          "200": { "description": "Successful response" }
+        }
+      },
+      "post": {
+        "summary": "Apply for leave",
+        "responses": {
+          "201": { "description": "Leave request created" }
+        }
+      }
+    },
+    "/leave_requests/{id}/approve": {
+      "post": {
+        "summary": "Approve leave request",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Leave approved" }
+        }
+      }
+    }
+  }
+}
