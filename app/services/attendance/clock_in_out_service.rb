@@ -1,12 +1,15 @@
 module Attendance
   class ClockInOutService
-    def self.clock_in(user, notes = nil)
+    def self.clock_in(user, notes = nil, ip_address = nil, latitude = nil, longitude = nil)
       today = Date.today
       record = AttendanceRecord.find_or_initialize_by(user: user, date: today)
       return { success: false, error: "Already clocked in today" } if record.clock_in.present?
 
       record.clock_in = Time.current
       record.notes = notes if notes.present?
+      record.ip_address = ip_address
+      record.latitude = latitude
+      record.longitude = longitude
       # Mark status: late if clocked in after 09:30 AM
       record.status = record.clock_in.strftime("%H:%M") > "09:30" ? :late : :present
 
