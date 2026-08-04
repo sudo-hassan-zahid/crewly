@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   belongs_to :department, optional: true
   belongs_to :designation, optional: true
+  belongs_to :shift, optional: true
   belongs_to :manager, class_name: "User", optional: true
 
   has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :nullify
