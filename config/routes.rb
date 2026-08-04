@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :departments
+      get "analytics/dashboard", to: "analytics#dashboard"
       resources :activity_logs, only: [:index] do
         collection do
           post :ingest
