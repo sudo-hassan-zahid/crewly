@@ -1,4 +1,4 @@
-# 🏢 Enterprise Human Resource Management System (HRMS)
+# 🏢 Workbase - Enterprise Human Resource Management System (HRMS)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
