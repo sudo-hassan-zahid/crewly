@@ -59,8 +59,8 @@ This document serves as the master tracking checklist for the Human Resource Man
 - [x] Monthly Gross & Net Salary Computation Engine (`SalaryStructure` calculation methods)
 - [x] Payslip Generation Service (`Payroll::PayslipGeneratorService`)
 - [x] Payslip Status Lifecycle (`draft`, `generated`, `paid`)
-- [ ] Batch Monthly Payroll Processing Job (Sidekiq background worker)
-- [ ] Digital PDF Payslip Generation & Email Delivery (Prawn gem)
+- [x] Batch Monthly Payroll Processing Job (`Payroll::BatchProcessingJob` background worker)
+- [x] Digital PDF Payslip Generation Service (`Payroll::PayslipPdfGeneratorService` via Prawn)
 - [ ] Tax Bracket Calculation Engine & Statutory Compliance (PF, ESI, TDS)
 - [ ] Direct Bank Transfer Batch Export (NACH / SEPA XML format)
 
