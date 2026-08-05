@@ -13,80 +13,95 @@ A clean, scalable, production-grade **Human Resource Management System (HRMS)** 
 
 ---
 
-## 🌟 Key Features & Architecture
+## What Runs In Docker
 
-- **🏢 Core HR & Org Hierarchy**: Departments, Designations, Employee Directory, Manager reporting structure.
-- **🔐 Multi-Role Access Control (RBAC)**: Admin, HR Manager, Line Manager, and Employee roles via `Pundit`.
-- **⏱️ Attendance & Shift Engine**: Clock-in/out service, auto work-hours calculation, late tagging, geofence/IP validation.
-- **🌴 Leave Management System**: Multi-level leave approvals, auto attendance sync, duration calculators.
-- **💰 Payroll Computation & PDF Payslips**: Monthly salary structure calculation engine, PDF payslip generator via Prawn, batch processing via Sidekiq/ActiveJob.
-- **📄 Employee Document Vault**: Document attachment storage via ActiveStorage.
-- **⚡ Real-Time Activity Tracking & WebSockets**: Live keystroke, mouse click, active window, and screenshot streaming via ActionCable (`ActivityChannel`).
-- **🔔 Real-Time In-App Notifications**: Instant push alerts via ActionCable (`NotificationChannel` & `DispatcherService`).
-- **💳 Multi-Tenant SaaS & Feature Gating**: Multi-tenant data isolation (`Organization` & `Current`), subdomain routing, and plan-tier feature gating via `Subscriptions::GatekeeperService`.
-- **📊 Executive HR Analytics**: Real-time headcount statistics, attendance rates, and 24h productivity score metrics (`/api/v1/analytics/dashboard`).
-- **📡 REST API & Interactive Swagger UI**: Complete API documentation served live at `/api-docs/index.html`.
-- **📊 Multi-Tenant Architecture Roadmap**: Multi-tenant database isolation, subdomain routing, and SaaS billing expansion specs in `AGENTS.md`.
+This repo now includes a Dockerized development path for:
+
+- Rails app server
+- PostgreSQL database
+
+That means you do not need to install a specific Ruby version on Windows if you use Docker for development.
 
 ---
 
-## Quick Start
+## Key Features
 
-### If You Are Running On Windows Without WSL
+- Core HR & org hierarchy
+- Role-based access control
+- Attendance and shift tracking
+- Leave management
+- Payroll and PDF payslips
+- Employee document vault
+- Real-time activity tracking
+- Real-time notifications
+- Multi-tenant SaaS and feature gating
+- HR analytics dashboard
 
-You do **not** need to install PostgreSQL locally if you are using the provided Docker Compose file. The minimum useful local installs are:
+---
+
+## Docker-First Quick Start
+
+### Prerequisites
 
 - Docker Desktop
-- Ruby 3.3.x for Windows
-- RubyGems/Bundler
-- Node.js 18+ if you plan to use Rails asset builds locally
 - Git
 
-Optional, but helpful:
+Optional:
 
-- PostgreSQL client tools if you want to connect to the database manually from Windows
-- A terminal such as Windows Terminal or PowerShell 7
+- Windows Terminal or PowerShell 7
 
-Notes:
-
-- The development database is provided by Docker Compose.
-- Development ActionCable is configured to use the async adapter, so Redis is not required just to boot the app locally.
-- This project is expected to run from PowerShell, Windows Terminal, or Git Bash on Windows.
-
-### Windows Setup Steps
-
-1. Install the prerequisites above.
-2. Clone the repository.
-3. Copy `.env.example` to `.env`.
-4. Start the database container.
-5. Run the Rails setup commands from Windows.
-
-Example:
+### 1. Clone & Configure
 
 ```powershell
 git clone git@github.com:sudo-hassan-zahid/hrms-ror.git
 cd hrms-ror
 Copy-Item .env.example .env
-docker compose up -d
-bundle install
-bin/rails db:prepare
-bin/rails db:seed
-bin/rails server -p 3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the interactive **Swagger UI** API documentation.
+### 2. Build And Start The Containers
 
-### Notes For Linux Or macOS
+```powershell
+docker compose up --build
+```
 
-If you are using Linux or macOS, the same Rails commands apply. Docker Compose still provides PostgreSQL, so you do not need a separate local PostgreSQL install unless you prefer one.
+### 3. Prepare The Database
+
+Open a second terminal and run:
+
+```powershell
+docker compose run --rm web bin/rails db:prepare
+docker compose run --rm web bin/rails db:seed
+```
+
+### 4. Open The App
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Running Unit & Integration Tests
+## Daily Development
 
-```bash
-bundle exec rspec
-```
+- Start everything:
+  ```powershell
+  docker compose up
+  ```
+- Run a Rails command inside the app container:
+  ```powershell
+  docker compose run --rm web bin/rails console
+  ```
+- Run the test suite:
+  ```powershell
+  docker compose run --rm web bundle exec rspec
+  ```
+
+---
+
+## Notes
+
+- The app container uses Ruby `3.3.12`.
+- The database container uses PostgreSQL `16`.
+- Development ActionCable uses the async adapter, so Redis is not required for local development.
+- If you want to run Rails directly on Windows instead of Docker, the project still supports that path, but Docker is now the recommended way to avoid local version drift.
 
 ---
 
