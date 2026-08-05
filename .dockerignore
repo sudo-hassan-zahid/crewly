@@ -1,0 +1,9 @@
+.git
+.bundle
+vendor/bundle
+log
+tmp
+storage
+node_modules
+public/assets
+.env

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.3.0"
+ruby "~> 3.3.0"
 
 # Core Rails Framework
 gem "rails", "~> 7.1.3"
@@ -34,7 +34,8 @@ gem "prawn", "~> 2.5"   # PDF Payslip Generation
 gem "nokogiri", "~> 1.16" # ISO20022 SEPA Bank XML Export
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x86_mingw cygwin ucrt ]
+  # Bundler on modern Windows uses the `windows`/`mingw` platform names.
+  gem "debug", platforms: %i[ mri windows mingw x64_mingw ]
   gem "byebug"
   gem "rspec-rails", "~> 6.1"
   gem "factory_bot_rails", "~> 6.4"
