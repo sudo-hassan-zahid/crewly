@@ -1,4 +1,4 @@
-FROM ruby:3.3.12
+FROM ruby:3.3.12-slim-bookworm
 
 ENV BUNDLE_PATH=/bundle \
     BUNDLE_BIN=/bundle/bin \
