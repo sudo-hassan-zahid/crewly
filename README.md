@@ -47,6 +47,10 @@ cp .env.example .env
 ```bash
 docker-compose up -d
 ```
+If you are using the Dockerized app container setup, you can also run:
+```bash
+docker compose up --build
+```
 
 ### 3. Setup Database & Seed Data
 ```bash
