@@ -1,4 +1,4 @@
-# Crewly - Human Resource Management System (HRMS)
+# 🏢 Crewly - Human Resource Management System (HRMS)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
@@ -13,99 +13,64 @@ A clean, scalable, production-grade **Human Resource Management System (HRMS)** 
 
 ---
 
-## What Runs In Docker
+## 🌟 Key Features & Architecture
 
-This repo now includes a Dockerized development path for:
-
-- Rails app server
-- PostgreSQL database
-
-That means you do not need to install a specific Ruby version on Windows if you use Docker for development.
-
----
-
-## Key Features
-
-- Core HR & org hierarchy
-- Role-based access control
-- Attendance and shift tracking
-- Leave management
-- Payroll and PDF payslips
-- Employee document vault
-- Real-time activity tracking
-- Real-time notifications
-- Multi-tenant SaaS and feature gating
-- HR analytics dashboard
+- **🏢 Core HR & Org Hierarchy**: Departments, Designations, Employee Directory, Manager reporting structure.
+- **🔐 Multi-Role Access Control (RBAC)**: Admin, HR Manager, Line Manager, and Employee roles via `Pundit`.
+- **⏱️ Attendance & Shift Engine**: Clock-in/out service, auto work-hours calculation, late tagging, geofence/IP validation.
+- **🌴 Leave Management System**: Multi-level leave approvals, auto attendance sync, duration calculators.
+- **💰 Payroll Computation & PDF Payslips**: Monthly salary structure calculation engine, PDF payslip generator via Prawn, batch processing via Sidekiq/ActiveJob.
+- **📄 Employee Document Vault**: Document attachment storage via ActiveStorage.
+- **⚡ Real-Time Activity Tracking & WebSockets**: Live keystroke, mouse click, active window, and screenshot streaming via ActionCable (`ActivityChannel`).
+- **🔔 Real-Time In-App Notifications**: Instant push alerts via ActionCable (`NotificationChannel` & `DispatcherService`).
+- **💳 Multi-Tenant SaaS & Feature Gating**: Multi-tenant data isolation (`Organization` & `Current`), subdomain routing, and plan-tier feature gating via `Subscriptions::GatekeeperService`.
+- **📊 Executive HR Analytics**: Real-time headcount statistics, attendance rates, and 24h productivity score metrics (`/api/v1/analytics/dashboard`).
+- **📡 REST API & Interactive Swagger UI**: Complete API documentation served live at `/api-docs/index.html`.
+- **📊 Multi-Tenant Architecture Roadmap**: Multi-tenant database isolation, subdomain routing, and SaaS billing expansion specs in `AGENTS.md`.
 
 ---
 
-## Docker-First Quick Start
+## 🚀 Quick Start (Docker Environment)
 
 ### Prerequisites
+- Docker Engine & Docker Compose
+- Ruby 3.3+ and Rails 7+ (for local host execution)
 
-- Docker Desktop
-- Git
-
-Optional:
-
-- Windows Terminal or PowerShell 7
-
-### 1. Clone & Configure
-
-```powershell
+### 1. Clone & Environment Setup
+```bash
 git clone git@github.com:sudo-hassan-zahid/hrms-ror.git
 cd hrms-ror
-Copy-Item .env.example .env
+cp .env.example .env
 ```
 
-### 2. Build And Start The Containers
-
-```powershell
-docker compose up --build
+### 2. Start PostgreSQL via Docker Compose
+```bash
+docker-compose up -d
 ```
 
-### 3. Prepare The Database
-
-Open a second terminal and run:
-
-```powershell
-docker compose run --rm web bin/rails db:prepare
-docker compose run --rm web bin/rails db:seed
+### 3. Setup Database & Seed Data
+```bash
+bin/rails db:prepare
+bin/rails db:seed
 ```
 
-### 4. Open The App
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+### 4. Run Rails Development Server
+```bash
+bin/rails server -p 3000
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the interactive **Swagger UI** API documentation.
 
 ---
 
-## Daily Development
+## 🧪 Running Unit & Integration Tests
 
-- Start everything:
-  ```powershell
-  docker compose up
-  ```
-- Run a Rails command inside the app container:
-  ```powershell
-  docker compose run --rm web bin/rails console
-  ```
-- Run the test suite:
-  ```powershell
-  docker compose run --rm web bundle exec rspec
-  ```
+```bash
+bundle exec rspec
+```
 
 ---
 
-## Notes
+## 📜 Documentation & Tracking
 
-- The app container uses Ruby `3.3.12`.
-- The database container uses PostgreSQL `16`.
-- Development ActionCable uses the async adapter, so Redis is not required for local development.
-- If you want to run Rails directly on Windows instead of Docker, the project still supports that path, but Docker is now the recommended way to avoid local version drift.
-
----
-
-## Documentation & Tracking
-
-- [AGENTS.md](/F:/crewly/AGENTS.md): Master feature matrix, completion status checklist, and multi-tenant SaaS roadmap.
-- [OpenAPI Spec](/F:/crewly/public/swagger.json): Full OpenAPI 3.0 JSON schema.
+- 📄 **[AGENTS.md](file:///j:/hrms-ror/AGENTS.md)**: Master feature matrix, completion status checklist, and multi-tenant SaaS roadmap.
+- 📄 **[OpenAPI Spec](file:///j:/hrms-ror/public/swagger.json)**: Full OpenAPI 3.0 JSON schema.
